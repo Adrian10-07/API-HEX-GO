@@ -14,7 +14,7 @@ func GetPetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	repo := infraestructure.NewMySQLRepository()  // Aquí debe ser el repositorio para Pets
+	repo := infraestructure.NewMySQLRepository()  
 	useCase := aplication.NewGetPet(repo)
 	pets, err := useCase.Execute()
 	if err != nil {
@@ -32,6 +32,5 @@ func GetPetHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write(petsJson)
 
-	// Si deseas mostrarlo en la consola para depuración
 	fmt.Printf(string(petsJson))
 }

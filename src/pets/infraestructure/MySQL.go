@@ -21,13 +21,13 @@ func (r *MySQLRepository) Save(p *domain.Pet) error {
 }
 
 func (r *MySQLRepository) Delete(nombre string) error {
-	query := "DELETE FROM Pets WHERE nombre = ?"
+	query := "DELETE FROM Pet WHERE Nombre = ?"
 	_, err := r.conn.DB.Exec(query, nombre)
 	return err
 }
 
 func (r *MySQLRepository) Update(nombre string, p *domain.Pet) error {
-	query := "UPDATE Pets SET nombre = ?, edad = ? WHERE nombre = ?"
+	query := "UPDATE Pet SET Nombre = ?, Edad = ? WHERE nombre = ?"
 	_, err := r.conn.DB.Exec(query, p.Nombre, p.Edad, nombre)
 	if err != nil {
 		return err
@@ -36,7 +36,7 @@ func (r *MySQLRepository) Update(nombre string, p *domain.Pet) error {
 }
 
 func (r *MySQLRepository) GetAll() ([]domain.Pet, error) {
-	query := "SELECT nombre, edad FROM Pets"
+	query := "SELECT Nombre, Edad FROM Pet"
 	rows, err := r.conn.DB.Query(query)
 	if err != nil {
 		return nil, err

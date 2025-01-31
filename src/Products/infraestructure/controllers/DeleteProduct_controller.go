@@ -22,17 +22,19 @@ func DeleteProductHandeler(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	productName := pathParts[2]
+	productName := pathParts[2] 
 
 
 	var Nombreproduct string = productName
-
 
 	repo := infraestructure.NewMySQLRepository()
 	useCase := aplication.NewDeleteProduct(repo)
 
 	if err := useCase.Execute(Nombreproduct); err != nil {
-		http.Error(w, "Error al guardar el producto", http.StatusInternalServerError)
+		http.Error(w, "Error al Borrar el producto", http.StatusInternalServerError)
 		return
 }
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("Producto elminado correctamente"))
+
 }

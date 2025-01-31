@@ -23,6 +23,9 @@ func GetProductHandler(w http.ResponseWriter, r *http.Request) {
 
 	productsJson, err := json.Marshal(products)
 
-	w.WriteHeader(http.StatusCreated)
 	fmt.Printf(string(productsJson))
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(productsJson)
+
 }

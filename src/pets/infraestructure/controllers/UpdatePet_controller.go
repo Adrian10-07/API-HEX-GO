@@ -33,8 +33,7 @@ func UpdatePetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Llamar al repositorio y caso de uso adecuado para la mascota
-	repo := infraestructure.NewMySQLRepository()  // Aquí debe ser el repositorio para Pets
+	repo := infraestructure.NewMySQLRepository()  
 	useCase := aplication.NewEditPet(repo)
 
 	err = useCase.Execute(idPet, &updatedPet)

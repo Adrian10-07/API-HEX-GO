@@ -22,7 +22,7 @@ func (r *MySQLRepository) Save(p *domain.Product) error {
 
 func (r *MySQLRepository) Delete(p string)error{
 	nombre :=p
-	query := "DELETE FROM Product WHERE nombre = ?"
+	query := "DELETE FROM Product WHERE Nombre = ?"
 	_,err :=r.conn.DB.Exec(query,nombre)
 	return err
 }
