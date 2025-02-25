@@ -21,11 +21,11 @@ func DeletePetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	petName := pathParts[2]  // Nombre de la mascota
+	petName := pathParts[2]  
 
 	var NombrePet string = petName
 
-	repo := infraestructure.NewMySQLRepository()  // Aquí debe ser el repositorio para Pets
+	repo := infraestructure.NewMySQLRepository()  
 	useCase := aplication.NewDeletePet(repo)
 
 	if err := useCase.Execute(NombrePet); err != nil {

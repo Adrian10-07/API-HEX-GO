@@ -6,8 +6,8 @@ import (
 )
 
 func SetupRoutes() {
-	http.HandleFunc("/pets", controllers.CreatePetHandler)            // Crear mascota
-	http.HandleFunc("/view-pets", controllers.GetPetHandler)          // Obtener todas las mascotas
-	http.HandleFunc("/delete-pets/", controllers.DeletePetHandler)    // Eliminar mascota
-	http.HandleFunc("/update-pets/", controllers.UpdatePetHandler)    // Actualizar mascota
+	http.HandleFunc("/pets", controllers.CreatePetHandler)
+	http.HandleFunc("/view-pets", controllers.GetPetHandler)
+	http.HandleFunc("/delete-pets/", controllers.DeletePetHandler)
+	http.HandleFunc("/update-pets/", controllers.UpdatePetHandler)    
 }

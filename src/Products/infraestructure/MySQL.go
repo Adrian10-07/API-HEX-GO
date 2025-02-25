@@ -37,7 +37,7 @@ func (r *MySQLRepository) Update(id int,p *domain.Product)error{
 }
 
 func (r *MySQLRepository) GetAll() ([]domain.Product, error) {
-	query := "SELECT nombre, precio FROM Product"
+	query := "SELECT id, nombre, precio FROM Product"
 	rows, err := r.conn.DB.Query(query)
 	if err != nil {
 		return nil, err
@@ -47,10 +47,25 @@ func (r *MySQLRepository) GetAll() ([]domain.Product, error) {
 	var products []domain.Product
 	for rows.Next() {
 		var product domain.Product
-		if err := rows.Scan(&product.Nombre, &product.Precio); err != nil {
+		if err := rows.Scan(&product.Id, &product.Nombre, &product.Precio); err != nil {
 			return nil, err
 		}
 		products = append(products, product)
 	}
 	return products, nil
 }
+
+
+func (r *MySQLRepository) GetById(id int) (*domain.Product, error) {
+	query := "SELECT nombre, precio FROM Product WHERE id = ?"
+	row := r.conn.DB.QueryRow(query, id)
+
+	var product domain.Product
+	if err := row.Scan(&product.Nombre, &product.Precio); err != nil {
+		return nil, err
+	}
+
+	return &product, nil
+}
+
+
